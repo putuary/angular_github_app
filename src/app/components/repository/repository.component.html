@@ -1,0 +1,35 @@
+<div id="main" class="main">
+  
+    <div class="pagetitle">
+      <h1>Repository</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+          <li class="breadcrumb-item active">Repository</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section dashboard">
+      <div class="row bg-body rounded px-3 py-3">
+        @for (repo of repoDetails; track repo.repository.id) {
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="d-inline-block">
+                        <img [src]="randomImage()" class="card-img-top" [alt]="repo.repository.name">
+                        <span class="badge text-bg-secondary position-absolute top-0 end-0">{{ repo.repository.created_at | date }}</span>
+                        <span class="badge text-bg-warning position-absolute top-0 start-0">{{ repo.repository.language ?? 'N/A' }}</span>
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">{{ repo.repository.name }}</h5>
+                      <span class="badge text-bg-success mb-2">Commit count: {{ repo.comit_count}}</span>
+                      <p class="card-text">{{ repo.repository.description }}</p>
+                      <a [href]="repo.repository.html_url" class="btn btn-primary">View Github</a>
+                    </div>
+                </div>
+            </div>
+        }
+      </div>
+    </section>
+
+</div><!-- End #main -->
